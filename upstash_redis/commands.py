@@ -860,8 +860,8 @@ class Commands:
         """
         command: List = ["HSET", key]
 
-        if field is None and values is None:
-            raise Exception("'hset' with no key value pairs")
+        if (not field or not value) and (not values or len(values) == 0):
+            raise Exception("At least one field must be specified.")
 
         if field and value:
             command.extend([field, value])
